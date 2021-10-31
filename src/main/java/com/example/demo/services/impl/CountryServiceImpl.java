@@ -51,7 +51,7 @@ public class CountryServiceImpl implements CountryService {
 					          .setTotalCases(totalCases)
 					          .setActiveCases(activeCases)
 					          .setTotalTests(totalTests);
-
+					
 					countryRepository.save(modelMapper.map(countryDto, Country.class));
 				}
 			}
