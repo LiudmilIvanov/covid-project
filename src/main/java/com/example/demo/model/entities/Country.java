@@ -21,9 +21,8 @@ public class Country extends BaseEntity {
 	@Column(name = "active_cases")
 	private int activeCases;
 
-	@ManyToOne
-	private Region region;
-
+	private String regionName;
+	
 	public int getTotalCases() {
 		return totalCases;
 	}
@@ -56,13 +55,14 @@ public class Country extends BaseEntity {
 		this.name = name;
 	}
 
-	public Region getRegion() {
-		return region;
+	public String getRegionName() {
+		return regionName;
 	}
 
-	public void setRegion(Region region) {
-		this.region = region;
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
 	}
+
 
 	
 }

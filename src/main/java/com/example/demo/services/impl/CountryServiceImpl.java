@@ -12,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.dtos.CountryDto;
+import com.example.demo.model.dtos.RegionDto;
 import com.example.demo.model.entities.Country;
+import com.example.demo.model.entities.Region;
 import com.example.demo.repositories.CountryRepository;
+import com.example.demo.repositories.RegionRepository;
 import com.example.demo.services.CountryService;
 
 @Service
@@ -21,11 +24,14 @@ public class CountryServiceImpl implements CountryService {
 
 	private final ModelMapper modelMapper;
 	private final CountryRepository countryRepository;
+	private final RegionRepository regionRepository;
 
 	@Autowired
-	public CountryServiceImpl(ModelMapper modelMapper, CountryRepository countryRepository) {
+	public CountryServiceImpl(ModelMapper modelMapper, CountryRepository countryRepository,
+			RegionRepository regionRepository) {
 		this.modelMapper = modelMapper;
 		this.countryRepository = countryRepository;
+		this.regionRepository = regionRepository;
 	}
 
 	@Override
@@ -45,28 +51,26 @@ public class CountryServiceImpl implements CountryService {
 				int activeCases = getTotalNumbers(country.childNodes().get(17).childNodes().toString());
 				int totalTests = getTotalNumbers(country.childNodes().get(25).childNodes().toString());
 
+				country.childNodes().stream().forEach(c -> {
+					if (c.hasAttr("data-continent") && !c.attr("data-continent").equals("all") && 
+							!c.attr("data-continent").isEmpty()) {
+						
+						countryDto.setRegionName(c.attr("data-continent"));
+
+					}
+				});
+
 				if (!countryName.equals("[]") && !countryName.isEmpty()) {
-					
+
 					countryDto.setName(countryName.substring(1, countryName.length() - 1))
-					          .setTotalCases(totalCases)
-					          .setActiveCases(activeCases)
-					          .setTotalTests(totalTests);
-					
-					
+							.setTotalCases(totalCases)
+							.setActiveCases(activeCases)
+							.setTotalTests(totalTests);
+
 					countryRepository.save(modelMapper.map(countryDto, Country.class));
 				}
 			}
 		});
-
-		System.out.println();
-//		countryContent.get(15).childNodes().stream().forEach(n -> System.out.println(n));
-//		System.out.println(countryContent.get(15).childNodes().get(1).childNodes().get(0));
-//		.stream()
-//		.forEach(n -> n.childNodes()
-//				.stream()
-//				.forEach(child -> System.out.println(child.)));
-//		n.attr("data-continent")
-
 	}
 
 	public int getTotalNumbers(String cases) {

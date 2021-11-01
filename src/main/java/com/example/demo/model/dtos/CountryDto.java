@@ -6,8 +6,8 @@ public class CountryDto {
 	private int totalCases;
 	private int totalTests;
 	private int activeCases;
-	private RegionDto regionDto;
-	
+	private String regionName;
+
 	public int getTotalCases() {
 		return totalCases;
 	}
@@ -44,13 +44,12 @@ public class CountryDto {
 		return this;
 	}
 
-	public RegionDto getRegionDto() {
-		return regionDto;
+	public String getRegionName() {
+		return regionName;
 	}
 
-	public void setRegionDto(RegionDto regionDto) {
-		this.regionDto = regionDto;
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
 	}
-	
-	
+
 }
