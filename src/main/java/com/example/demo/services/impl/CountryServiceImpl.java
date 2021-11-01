@@ -25,14 +25,11 @@ public class CountryServiceImpl implements CountryService {
 
 	private final ModelMapper modelMapper;
 	private final CountryRepository countryRepository;
-	private final RegionRepository regionRepository;
 
 	@Autowired
-	public CountryServiceImpl(ModelMapper modelMapper, CountryRepository countryRepository,
-			RegionRepository regionRepository) {
+	public CountryServiceImpl(ModelMapper modelMapper, CountryRepository countryRepository) {
 		this.modelMapper = modelMapper;
 		this.countryRepository = countryRepository;
-		this.regionRepository = regionRepository;
 	}
 
 	@Override
