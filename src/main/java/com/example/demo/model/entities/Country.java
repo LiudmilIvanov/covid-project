@@ -2,6 +2,7 @@ package com.example.demo.model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +20,9 @@ public class Country extends BaseEntity {
 
 	@Column(name = "active_cases")
 	private int activeCases;
+
+	@ManyToOne
+	private Region region;
 
 	public int getTotalCases() {
 		return totalCases;
@@ -52,4 +56,13 @@ public class Country extends BaseEntity {
 		this.name = name;
 	}
 
+	public Region getRegion() {
+		return region;
+	}
+
+	public void setRegion(Region region) {
+		this.region = region;
+	}
+
+	
 }

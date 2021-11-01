@@ -6,7 +6,8 @@ public class CountryDto {
 	private int totalCases;
 	private int totalTests;
 	private int activeCases;
-
+	private RegionDto regionDto;
+	
 	public int getTotalCases() {
 		return totalCases;
 	}
@@ -43,4 +44,13 @@ public class CountryDto {
 		return this;
 	}
 
+	public RegionDto getRegionDto() {
+		return regionDto;
+	}
+
+	public void setRegionDto(RegionDto regionDto) {
+		this.regionDto = regionDto;
+	}
+	
+	
 }
