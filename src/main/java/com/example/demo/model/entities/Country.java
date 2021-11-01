@@ -21,7 +21,8 @@ public class Country extends BaseEntity {
 	@Column(name = "active_cases")
 	private int activeCases;
 
-	private String regionName;
+	@Column
+	private String region;
 	
 	public int getTotalCases() {
 		return totalCases;
@@ -56,11 +57,17 @@ public class Country extends BaseEntity {
 	}
 
 	public String getRegionName() {
-		return regionName;
+		return region;
 	}
 
 	public void setRegionName(String regionName) {
-		this.regionName = regionName;
+		this.region = regionName;
+	}
+
+	@Override
+	public String toString() {
+		return "Country [name=" + name + ", totalCases=" + totalCases + ", totalTests=" + totalTests + ", activeCases="
+				+ activeCases + ", region=" + region + "]";
 	}
 
 

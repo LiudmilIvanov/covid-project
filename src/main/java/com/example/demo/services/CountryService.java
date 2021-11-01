@@ -9,4 +9,6 @@ public interface CountryService {
 
 	public void getCountryDetails() throws IOException;
 	
+	public List<CountryDto> getCountriesByRegion(String region);
+	
 }

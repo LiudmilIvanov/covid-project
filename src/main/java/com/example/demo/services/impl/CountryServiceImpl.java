@@ -2,6 +2,7 @@ package com.example.demo.services.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -52,9 +53,9 @@ public class CountryServiceImpl implements CountryService {
 				int totalTests = getTotalNumbers(country.childNodes().get(25).childNodes().toString());
 
 				country.childNodes().stream().forEach(c -> {
-					if (c.hasAttr("data-continent") && !c.attr("data-continent").equals("all") && 
-							!c.attr("data-continent").isEmpty()) {
-						
+					if (c.hasAttr("data-continent") && !c.attr("data-continent").equals("all")
+							&& !c.attr("data-continent").isEmpty()) {
+
 						countryDto.setRegionName(c.attr("data-continent"));
 
 					}
@@ -62,10 +63,8 @@ public class CountryServiceImpl implements CountryService {
 
 				if (!countryName.equals("[]") && !countryName.isEmpty()) {
 
-					countryDto.setName(countryName.substring(1, countryName.length() - 1))
-							.setTotalCases(totalCases)
-							.setActiveCases(activeCases)
-							.setTotalTests(totalTests);
+					countryDto.setName(countryName.substring(1, countryName.length() - 1)).setTotalCases(totalCases)
+							.setActiveCases(activeCases).setTotalTests(totalTests);
 
 					countryRepository.save(modelMapper.map(countryDto, Country.class));
 				}
@@ -76,7 +75,6 @@ public class CountryServiceImpl implements CountryService {
 	public int getTotalNumbers(String cases) {
 		String temp = cases.substring(1, cases.length() - 1);
 
-		System.out.println();
 		if (!temp.equals("Total, <br>, Cases") && !temp.equals("Total, <br>, Tests")
 				&& !temp.equals("Active, <br>, Cases") && !temp.equals("N/A") && !temp.isEmpty()) {
 			String total = temp.replace(",", "");
@@ -85,5 +83,16 @@ public class CountryServiceImpl implements CountryService {
 		} else {
 			return 0;
 		}
+	}
+
+	@Override
+	public List<CountryDto> getCountriesByRegion(String region) {
+
+		return countryRepository.findAllByRegion(region).stream().map(country -> {
+			CountryDto countryDto = modelMapper.map(country, CountryDto.class);
+
+			return countryDto;
+
+		}).collect(Collectors.toList());
 	}
 }
