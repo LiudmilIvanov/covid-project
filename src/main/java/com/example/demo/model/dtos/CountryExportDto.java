@@ -1,29 +1,32 @@
-package com.example.demo.model.entities;
+package com.example.demo.model.dtos;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.opencsv.bean.CsvBindByName;
 
-@Entity
-@Table(name = "countries")
-public class Country extends BaseEntity {
+public class CountryExportDto {
 
-	@Column(name = "name")
+	@CsvBindByName
 	private String name;
-
-	@Column(name = "total_cases")
+	
+	@CsvBindByName
 	private int totalCases;
-
-	@Column(name = "total_tests")
+	
+	@CsvBindByName
 	private int totalTests;
 
-	@Column(name = "active_cases")
+	@CsvBindByName
 	private int activeCases;
-
-	@Column
-	private String region;
 	
+	@CsvBindByName
+	private String regionName;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getTotalCases() {
 		return totalCases;
 	}
@@ -48,20 +51,12 @@ public class Country extends BaseEntity {
 		this.activeCases = activeCases;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getRegionName() {
-		return region;
+		return regionName;
 	}
 
 	public void setRegionName(String regionName) {
-		this.region = regionName;
+		this.regionName = regionName;
 	}
 
 }
