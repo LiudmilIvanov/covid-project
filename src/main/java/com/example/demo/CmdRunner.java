@@ -3,11 +3,14 @@ package com.example.demo;
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.model.dtos.CountryDto;
@@ -43,34 +46,13 @@ public class CmdRunner implements CommandLineRunner {
 		countryService.getCountryDetails();
 
 		while (true) {
-//			 String input = bufferedReader.readLine();
-
-			// tableUtil.printTable(countryService.getCountriesByRegion(input));
-
-//			Writer writer = new FileWriter("c:\\Games\\test.csv");
-//			StatefulBeanToCsv beanToCsv = new StatefulBeanToCsvBuilder(writer).build();
-////			beanToCsv.write(countryRepository.findAll());
-//		
-//			beanToCsv.write(countryService.getCountriesByRegion("Asia"));
-//			System.out.println();
-//			writer.close();
+//			String input = bufferedReader.readLine();
+//
+//			tableUtil.printTable(countryService.getCountriesByRegion(input));
+//
 			List<CountryDto> dtos = countryService.getCountriesByRegion("Asia");
-
+//
 			exportToCsv.exportToFIle(dtos);
-//			String[] header = { "REGION", "COUNTRY", "TOTALCASES", "TOTALTESTS", "ACTIVECASES" };
-//
-//			CSVWriter writer = new CSVWriter(new FileWriter("c:\\Games\\test.csv"));
-//			writer.writeNext(header);
-//
-//			dtos.stream().forEach(country -> {
-//				String[] details = { country.getRegionName(), country.getName(),
-//						String.valueOf(country.getTotalCases()), String.valueOf(country.getTotalTests()),
-//						String.valueOf(country.getActiveCases()) };
-//				
-//				writer.writeNext(details);
-//			});
-//
-//			writer.close();
 
 		}
 	}
