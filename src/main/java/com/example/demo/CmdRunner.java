@@ -46,13 +46,13 @@ public class CmdRunner implements CommandLineRunner {
 		countryService.getCountryDetails();
 
 		while (true) {
-//			String input = bufferedReader.readLine();
+			String input = bufferedReader.readLine();
 //
 //			tableUtil.printTable(countryService.getCountriesByRegion(input));
 //
 			List<CountryDto> dtos = countryService.getCountriesByRegion("Asia");
 //
-			exportToCsv.exportToFIle(dtos);
+			exportToCsv.exportToFIle(dtos, input);
 
 		}
 	}

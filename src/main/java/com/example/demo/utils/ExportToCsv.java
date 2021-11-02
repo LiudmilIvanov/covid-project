@@ -7,5 +7,9 @@ import com.example.demo.model.dtos.CountryDto;
 
 public interface ExportToCsv {
 
-	public void exportToFIle(List<CountryDto> dtos) throws IOException;
+	public void exportToFIle(List<CountryDto> dtos, String input) throws IOException;
+	
+	public void writeInCsv(List<CountryDto> dtos, String input) throws IOException;
+	
+	public String getCurrentDate();
 }
