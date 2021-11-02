@@ -26,6 +26,7 @@ public class ExportToCsvImpl implements ExportToCsv {
 		String fileName = "export_" + input + "_" + getCurrentDate() + ".csv";
 
 		File file = new File(GlobalConstants.FILE_PATH + fileName);
+		
 		if (file.exists()) {
 			return;
 		}

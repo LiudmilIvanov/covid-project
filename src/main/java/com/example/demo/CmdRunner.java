@@ -13,9 +13,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.model.dtos.CountryDto;
-import com.example.demo.model.entities.Country;
-import com.example.demo.repositories.CountryRepository;
 import com.example.demo.services.CountryService;
 import com.example.demo.utils.ExportToCsv;
 import com.example.demo.utils.TableUtil;
@@ -48,11 +45,8 @@ public class CmdRunner implements CommandLineRunner {
 		while (true) {
 			String input = bufferedReader.readLine();
 //
-//			tableUtil.printTable(countryService.getCountriesByRegion(input));
-//
-			List<CountryDto> dtos = countryService.getCountriesByRegion("Asia");
-//
-			exportToCsv.exportToFIle(dtos, input);
+			tableUtil.printTable(countryService.getCountriesByRegion(input));
+			exportToCsv.exportToFIle(countryService.getCountriesByRegion(input), input);
 
 		}
 	}

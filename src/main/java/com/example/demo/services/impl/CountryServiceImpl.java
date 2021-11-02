@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.constants.GlobalConstants;
 import com.example.demo.model.dtos.CountryDto;
 import com.example.demo.model.dtos.RegionDto;
 import com.example.demo.model.entities.Country;
@@ -35,7 +36,7 @@ public class CountryServiceImpl implements CountryService {
 	@Override
 	public void getCountryDetails() throws IOException {
 
-		Document doc = Jsoup.connect("https://www.worldometers.info/coronavirus/#c-asia").get();
+		Document doc = Jsoup.connect(GlobalConstants.DATA_URL).get();
 
 		List<Element> countryContent = doc.getElementsByTag("tr");
 
