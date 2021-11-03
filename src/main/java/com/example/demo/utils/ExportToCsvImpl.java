@@ -19,6 +19,8 @@ public class ExportToCsvImpl implements ExportToCsv {
 	@Override
 	public void exportToFIle(List<CountryDto> dtos, String input) throws IOException {
 
+		System.out.println();
+		
 		if (input.trim().equals("") && input.isEmpty()) {
 			return;
 		}
