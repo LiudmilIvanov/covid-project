@@ -44,10 +44,10 @@ public class CmdRunner implements CommandLineRunner {
 
 		while (true) {
 			String input = bufferedReader.readLine();
-//
-			tableUtil.printTable(countryService.getCountriesByRegion(input));
-			exportToCsv.exportToFIle(countryService.getCountriesByRegion(input), input);
+			String regionName = input.substring(input.indexOf("=") + 1);
 
+			tableUtil.printTable(countryService.getCountriesByRegion(regionName));
+			exportToCsv.exportToFIle(countryService.getCountriesByRegion(regionName), regionName);
 		}
 	}
 }
